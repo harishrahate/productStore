@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Settings - Product Store</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dark-mode.css">
+    <link rel="stylesheet" href="css/navbar-dropdown.css">
+    <link rel="stylesheet" href="css/error-handling.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body data-breadcrumbs='[{"name":"Home","url":"index.html"},{"name":"Settings"}]'>
+    <main class="container">
+        <div class="page-header">
+            <div class="header-icon">⚙️</div>
+            <h2>Account Settings</h2>
+            <p>Customize your account preferences and settings</p>
+        </div>
+
+        <div class="settings-container">
+            <div class="settings-sidebar">
+                <div class="settings-nav">
+                    <a href="#notifications" class="settings-nav-item active">
+                        <span class="settings-icon">🔔</span>
+                        <span>Notifications</span>
+                    </a>
+                    <a href="#privacy" class="settings-nav-item">
+                        <span class="settings-icon">🔒</span>
+                        <span>Privacy</span>
+                    </a>
+                    <a href="#appearance" class="settings-nav-item">
+                        <span class="settings-icon">🎨</span>
+                        <span>Appearance</span>
+                    </a>
+                    <a href="#payment" class="settings-nav-item">
+                        <span class="settings-icon">💳</span>
+                        <span>Payment Methods</span>
+                    </a>
+                    <a href="#shipping" class="settings-nav-item">
+                        <span class="settings-icon">🚚</span>
+                        <span>Shipping Addresses</span>
+                    </a>
+                    <a href="profile.html" class="settings-nav-item">
+                        <span class="settings-icon">👤</span>
+                        <span>Profile</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="settings-content">
+                <section id="notifications" class="settings-section active">
+                    <h3>Notification Preferences</h3>
+                    <div class="settings-form">
+                        <div class="settings-option">
+                            <div class="option-info">
+                                <h4>Order Updates</h4>
+                                <p>Receive notifications about your order status</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="settings-option">
+                            <div class="option-info">
+                                <h4>Promotions and Deals</h4>
+                                <p>Get notified about special offers and discounts</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="settings-option">
+                            <div class="option-info">
+                                <h4>Product Recommendations</h4>
+                                <p>Receive personalized product suggestions</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="settings-option">
+                            <div class="option-info">
+                                <h4>Email Notifications</h4>
+                                <p>Receive updates via email</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <button type="submit" class="btn-primary">Save Preferences</button>
+                    </div>
+                </section>
+
+                <section id="privacy" class="settings-section">
+                    <h3>Privacy Settings</h3>
+                    <div class="settings-form">
+                        <div class="settings-option">
+                            <div class="option-info">
+                                <h4>Profile Visibility</h4>
+                                <p>Control who can see your profile information</p>
+                            </div>
+                            <select class="settings-select">
+                                <option>Public</option>
+                                <option selected>Friends Only</option>
+                                <option>Private</option>
+                            </select>
+                        </div>
+                        <div class="settings-option">
+                            <div class="option-info">
+                                <h4>Search Engine Visibility</h4>
+                                <p>Allow search engines to index your profile</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="settings-option">
+                            <div class="option-info">
+                                <h4>Data Collection</h4>
+                                <p>Allow us to collect usage data to improve your experience</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <button type="submit" class="btn-primary">Update Privacy Settings</button>
+                    </div>
+                </section>
+
+                <section id="appearance" class="settings-section">
+                    <h3>Appearance Settings</h3>
+                    <div class="settings-form">
+                        <div class="settings-option">
+                            <div class="option-info">
+                                <h4>Theme</h4>
+                                <p>Choose your preferred theme</p>
+                            </div>
+                            <div class="theme-options">
+                                <label class="theme-option">
+                                    <input type="radio" name="theme" checked>
+                                    <span class="theme-preview light-theme"></span>
+                                    <span>Light</span>
+                                </label>
+                                <label class="theme-option">
+                                    <input type="radio" name="theme">
+                                    <span class="theme-preview dark-theme"></span>
+                                    <span>Dark</span>
+                                </label>
+                                <label class="theme-option">
+                                    <input type="radio" name="theme">
+                                    <span class="theme-preview system-theme"></span>
+                                    <span>System</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="settings-option">
+                            <div class="option-info">
+                                <h4>Font Size</h4>
+                                <p>Adjust the text size</p>
+                            </div>
+                            <div class="font-size-slider">
+                                <span>A-</span>
+                                <input type="range" min="1" max="5" value="3">
+                                <span>A+</span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-primary">Save Appearance</button>
+                    </div>
+                </section>
+
+                <section id="payment" class="settings-section">
+                    <h3>Payment Methods</h3>
+                    <div class="settings-form">
+                        <div class="payment-methods">
+                            <div class="payment-card">
+                                <div class="card-info">
+                                    <div class="card-type">
+                                        <span class="card-icon">💳</span>
+                                        <span>Visa ending in 4242</span>
+                                    </div>
+                                    <div class="card-expiry">Expires 12/25</div>
+                                </div>
+                                <div class="card-actions">
+                                    <button class="btn-secondary">Remove</button>
+                                    <button class="btn-primary">Edit</button>
+                                </div>
+                            </div>
+                            <button class="add-payment-btn">
+                                <span>+</span>
+                                <span>Add Payment Method</span>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="shipping" class="settings-section">
+                    <h3>Shipping Addresses</h3>
+                    <div class="settings-form">
+                        <div class="address-list">
+                            <div class="address-card">
+                                <div class="address-info">
+                                    <h4>Home</h4>
+                                    <p>123 Main Street</p>
+                                    <p>Apt 4B</p>
+                                    <p>New York, NY 10001</p>
+                                    <p>United States</p>
+                                    <div class="address-badge default">Default</div>
+                                </div>
+                                <div class="address-actions">
+                                    <button class="btn-secondary">Remove</button>
+                                    <button class="btn-primary">Edit</button>
+                                </div>
+                            </div>
+                            <button class="add-address-btn">
+                                <span>+</span>
+                                <span>Add New Address</span>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/navbar.js"></script>
+    <script src="js/footer.js"></script>
+    <script src="js/toast.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/dropdown.js"></script>
+    <script src="js/settings.js"></script>
+</body>
+</html>

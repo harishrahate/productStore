@@ -1,0 +1,38 @@
+/* Product Detail Page Styles */
+.product-actions {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.product-actions .wishlist-btn {
+    background: none;
+    border: none;
+    color: #ccc;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 2rem;
+    margin-right: 15px;
+    padding: 0;
+}
+
+.product-actions .wishlist-btn.active,
+.product-actions .wishlist-btn:hover {
+    color: #e74c3c;
+    transform: scale(1.1);
+}
+
+.product-actions .btn-primary {
+    padding: 12px 25px;
+    font-size: 1rem;
+}
+
+/* Dark mode support */
+body.dark-mode .product-actions .wishlist-btn {
+    color: #555;
+}
+
+body.dark-mode .product-actions .wishlist-btn.active,
+body.dark-mode .product-actions .wishlist-btn:hover {
+    color: #e74c3c;
+}

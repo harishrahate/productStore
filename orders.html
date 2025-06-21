@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Order History - Product Store</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dark-mode.css">
+    <link rel="stylesheet" href="css/navbar-dropdown.css">
+    <link rel="stylesheet" href="css/error-handling.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body data-breadcrumbs='[{"name":"Home","url":"index.html"},{"name":"Order History"}]'>
+
+
+    <main class="container">
+        <div class="page-header">
+            <div class="header-icon">📦</div>
+            <h2>Order History</h2>
+            <p>Track your past purchases and reorder your favorites</p>
+        </div>
+        
+        <div id="order-history-container" class="order-history-container">
+            <!-- Order history will be loaded here -->
+        </div>
+    </main>
+
+    <script src="js/navbar.js"></script>
+    <script src="js/footer.js"></script>
+    <script src="js/toast.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/wishlist.js"></script>
+    <script src="js/orders.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/dropdown.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!getCurrentUser()) {
+                showToast('Please login to view order history', 'error');
+                setTimeout(() => window.location.href = 'login.html', 1000);
+                return;
+            }
+            
+            displayOrderHistory();
+            updateAuthLink();
+            updateCartCount();
+            updateWishlistCount();
+        });
+    </script>
+</body>
+</html>

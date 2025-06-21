@@ -1,0 +1,98 @@
+/* Category Page Styles */
+.category-banner {
+    background: linear-gradient(135deg, #3498db, #2ecc71);
+    color: white;
+    padding: 30px;
+    margin-bottom: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(52, 152, 219, 0.3);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.category-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none"/><path d="M0,0l100,100M0,20l100,80M0,40l100,60M0,60l100,40M0,80l100,20M0,100l100,0M20,0l80,100M40,0l60,100M60,0l40,100M80,0l20,100" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></svg>');
+    opacity: 0.3;
+}
+
+.category-banner h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.category-banner p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    opacity: 0.9;
+}
+
+/* Electronics Category */
+.electronics-banner {
+    background: linear-gradient(135deg, #3498db, #9b59b6);
+}
+
+.electronics-banner::before {
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none"/><circle cx="20" cy="20" r="3" fill="rgba(255,255,255,0.2)"/><circle cx="50" cy="20" r="3" fill="rgba(255,255,255,0.2)"/><circle cx="80" cy="20" r="3" fill="rgba(255,255,255,0.2)"/><circle cx="20" cy="50" r="3" fill="rgba(255,255,255,0.2)"/><circle cx="50" cy="50" r="3" fill="rgba(255,255,255,0.2)"/><circle cx="80" cy="50" r="3" fill="rgba(255,255,255,0.2)"/><circle cx="20" cy="80" r="3" fill="rgba(255,255,255,0.2)"/><circle cx="50" cy="80" r="3" fill="rgba(255,255,255,0.2)"/><circle cx="80" cy="80" r="3" fill="rgba(255,255,255,0.2)"/></svg>');
+}
+
+/* Clothing Category */
+.clothing-banner {
+    background: linear-gradient(135deg, #e74c3c, #f39c12);
+}
+
+.clothing-banner::before {
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none"/><path d="M0,0 L100,0 L100,100 L0,100 Z" stroke="rgba(255,255,255,0.2)" stroke-width="1" fill="none"/><path d="M25,0 L25,100" stroke="rgba(255,255,255,0.1)" stroke-width="1"/><path d="M50,0 L50,100" stroke="rgba(255,255,255,0.1)" stroke-width="1"/><path d="M75,0 L75,100" stroke="rgba(255,255,255,0.1)" stroke-width="1"/><path d="M0,25 L100,25" stroke="rgba(255,255,255,0.1)" stroke-width="1"/><path d="M0,50 L100,50" stroke="rgba(255,255,255,0.1)" stroke-width="1"/><path d="M0,75 L100,75" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></svg>');
+}
+
+/* Jewelry Category */
+.jewelry-banner {
+    background: linear-gradient(135deg, #f1c40f, #e67e22);
+}
+
+.jewelry-banner::before {
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none"/><circle cx="50" cy="50" r="40" stroke="rgba(255,255,255,0.2)" stroke-width="1" fill="none"/><circle cx="50" cy="50" r="30" stroke="rgba(255,255,255,0.2)" stroke-width="1" fill="none"/><circle cx="50" cy="50" r="20" stroke="rgba(255,255,255,0.2)" stroke-width="1" fill="none"/><circle cx="50" cy="50" r="10" stroke="rgba(255,255,255,0.2)" stroke-width="1" fill="none"/></svg>');
+}
+
+/* Dark Mode Support */
+body.dark-mode .category-banner {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .category-banner {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .category-banner h1 {
+        font-size: 2rem;
+    }
+    
+    .category-banner p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .category-banner {
+        padding: 15px;
+    }
+    
+    .category-banner h1 {
+        font-size: 1.5rem;
+    }
+    
+    .category-banner p {
+        font-size: 0.9rem;
+    }
+}

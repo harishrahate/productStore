@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Cart - Product Store</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dark-mode.css">
+    <link rel="stylesheet" href="css/navbar-dropdown.css">
+    <link rel="stylesheet" href="css/error-handling.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body data-breadcrumbs='[{"name":"Home","url":"index.html"},{"name":"Cart"}]'>
+
+
+    <main class="container">
+        <h2>Shopping Cart</h2>
+        <div id="cart-items" class="cart-items">
+            <!-- Cart items will be loaded here -->
+        </div>
+        <div class="coupon-section">
+            <h3>Apply Coupon</h3>
+            <div class="coupon-input">
+                <input type="text" id="coupon-code" placeholder="Enter coupon code" maxlength="20">
+                <button id="apply-coupon-btn" class="btn-primary">Apply</button>
+                <button id="remove-coupon-btn" class="btn-secondary" style="display: none;">Remove</button>
+            </div>
+            <div id="coupon-message" class="coupon-message"></div>
+            <div class="available-coupons">
+                <p><strong>Available Coupons:</strong></p>
+                <div class="coupon-list">
+                    <span class="coupon-tag" onclick="applyCouponCode('SAVE10')">SAVE10 - 10% off (Min $50)</span>
+                    <span class="coupon-tag" onclick="applyCouponCode('SAVE20')">SAVE20 - 20% off (Min $100)</span>
+                    <span class="coupon-tag" onclick="applyCouponCode('FLAT50')">FLAT50 - $50 off (Min $200)</span>
+                    <span class="coupon-tag" onclick="applyCouponCode('WELCOME')">WELCOME - 15% off</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="cart-total">
+            <div class="total-breakdown">
+                <div class="total-row">
+                    <span>Subtotal:</span>
+                    <span>$<span id="cart-subtotal">0.00</span></span>
+                </div>
+                <div class="total-row discount-row" id="discount-row" style="display: none;">
+                    <span>Discount (<span id="discount-code"></span>):</span>
+                    <span class="discount-amount">-$<span id="cart-discount">0.00</span></span>
+                </div>
+                <div class="total-row final-total">
+                    <span><strong>Total:</strong></span>
+                    <span><strong>$<span id="cart-total">0.00</span></strong></span>
+                </div>
+            </div>
+            <button id="checkout-btn" class="btn-primary">Checkout</button>
+        </div>
+    </main>
+
+    <script src="js/navbar.js"></script>
+    <script src="js/footer.js"></script>
+    <script src="js/toast.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/wishlist.js"></script>
+    <script src="js/coupons.js"></script>
+    <script src="js/orders.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/dropdown.js"></script>
+    <script>
+        if (!getCurrentUser()) {
+            showToast('Please login to view cart', 'error');
+            setTimeout(() => window.location.href = 'login.html', 1000);
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!getCurrentUser()) {
+                showToast('Please login to view cart', 'error');
+                setTimeout(() => window.location.href = 'login.html', 1000);
+                return;
+            }
+            displayCartItems();
+            updateCartCount();
+            updateAuthLink();
+            updateWishlistCount();
+        });
+        
+        document.getElementById('checkout-btn').addEventListener('click', function() {
+            if (getCartItems().length === 0) {
+                showToast('Your cart is empty', 'error');
+                return;
+            }
+            
+            if (!getCurrentUser()) {
+                showToast('Please login to place order', 'error');
+                setTimeout(() => window.location.href = 'login.html', 1000);
+                return;
+            }
+            
+            const cartItems = getCartItems();
+            const totals = calculateCartTotals();
+            const order = createOrder(cartItems, totals);
+            
+            if (order) {
+                showToast(`Order #${order.id} placed successfully!`, 'success');
+                clearCart();
+                displayCartItems();
+                updateCouponUI();
+                setTimeout(() => window.location.href = 'orders.html', 1500);
+            } else {
+                showToast('Failed to place order. Please try again.', 'error');
+            }
+        });
+        
+        document.getElementById('apply-coupon-btn').addEventListener('click', applyCoupon);
+        document.getElementById('remove-coupon-btn').addEventListener('click', removeCouponFromCart);
+        document.getElementById('coupon-code').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                applyCoupon();
+            }
+        });
+        
+        function applyCoupon() {
+            const code = document.getElementById('coupon-code').value.trim();
+            if (!code) {
+                showCouponMessage('Please enter a coupon code', 'error');
+                return;
+            }
+            
+            const totals = calculateCartTotals();
+            const validation = validateCoupon(code, totals.subtotal);
+            
+            if (validation.valid) {
+                setAppliedCoupon({ ...validation.coupon, code: code.toUpperCase() });
+                showCouponMessage(`Coupon applied! You saved ${calculateDiscount(validation.coupon, totals.subtotal).toFixed(2)}`, 'success');
+                updateCartTotals();
+                updateCouponUI();
+            } else {
+                showCouponMessage(validation.message, 'error');
+            }
+        }
+        
+        function applyCouponCode(code) {
+            document.getElementById('coupon-code').value = code;
+            applyCoupon();
+        }
+        
+        function removeCouponFromCart() {
+            removeCoupon();
+            showCouponMessage('Coupon removed', 'info');
+            updateCartTotals();
+            updateCouponUI();
+        }
+        
+        function updateCouponUI() {
+            const appliedCoupon = getAppliedCoupon();
+            const couponInput = document.getElementById('coupon-code');
+            const applyBtn = document.getElementById('apply-coupon-btn');
+            const removeBtn = document.getElementById('remove-coupon-btn');
+            
+            if (appliedCoupon) {
+                couponInput.value = appliedCoupon.code;
+                couponInput.disabled = true;
+                applyBtn.style.display = 'none';
+                removeBtn.style.display = 'inline-block';
+            } else {
+                couponInput.value = '';
+                couponInput.disabled = false;
+                applyBtn.style.display = 'inline-block';
+                removeBtn.style.display = 'none';
+            }
+        }
+        
+        function showCouponMessage(message, type) {
+            const messageElement = document.getElementById('coupon-message');
+            messageElement.textContent = message;
+            messageElement.className = `coupon-message ${type}`;
+            setTimeout(() => {
+                messageElement.textContent = '';
+                messageElement.className = 'coupon-message';
+            }, 3000);
+        }
+        
+        // Initialize coupon UI on page load
+        updateCouponUI();
+    </script>
+</body>
+</html>

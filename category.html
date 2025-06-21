@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Category - Product Store</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dark-mode.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body data-breadcrumbs='[{"name":"Home","url":"index.html"},{"name":"Category"}]'>
+    <nav class="category-nav">
+        <ul id="category-list">
+            <!-- Categories will be loaded here -->
+        </ul>
+    </nav>
+
+    <main class="container">
+        <div class="search-filter">
+            <div class="search-section">
+                <input type="text" id="search-input" placeholder="Search products, brands, categories...">
+                <button id="clear-search" class="clear-btn" style="display: none;">✕</button>
+            </div>
+            
+            <div class="filter-section">
+                <select id="sort-select">
+                    <option value="">Sort by</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="name">Name A-Z</option>
+                    <option value="rating">Rating</option>
+                    <option value="newest">Newest First</option>
+                </select>
+                
+                <div class="price-filter">
+                    <label>Price Range:</label>
+                    <div class="price-inputs">
+                        <input type="number" id="min-price" placeholder="Min" min="0">
+                        <span>-</span>
+                        <input type="number" id="max-price" placeholder="Max" min="0">
+                    </div>
+                </div>
+                
+                <button id="advanced-filter-btn" class="filter-toggle-btn">🔧 Filters</button>
+            </div>
+        </div>
+        
+        <div id="advanced-filters" class="advanced-filters" style="display: none;">
+            <div class="filter-group">
+                <h4>Rating</h4>
+                <div class="rating-filter">
+                    <label><input type="radio" name="rating" value=""> All Ratings</label>
+                    <label><input type="radio" name="rating" value="4"> 4+ Stars</label>
+                    <label><input type="radio" name="rating" value="3"> 3+ Stars</label>
+                    <label><input type="radio" name="rating" value="2"> 2+ Stars</label>
+                </div>
+            </div>
+            
+            <div class="filter-group">
+                <h4>Availability</h4>
+                <div class="availability-filter">
+                    <label><input type="checkbox" id="in-stock"> In Stock Only</label>
+                    <label><input type="checkbox" id="on-sale"> On Sale</label>
+                </div>
+            </div>
+            
+            <div class="filter-actions">
+                <button id="apply-filters" class="btn-primary">Apply Filters</button>
+                <button id="clear-filters" class="btn-secondary">Clear All</button>
+            </div>
+        </div>
+        
+        <div id="active-filters" class="active-filters" style="display: none;">
+            <span class="filter-label">Active Filters:</span>
+            <div id="filter-tags"></div>
+        </div>
+        
+        <div class="category-banner">
+            <h1 id="category-title">Category Name</h1>
+            <p id="category-description">Browse our selection of high-quality products in this category.</p>
+        </div>
+        
+        <h2 id="page-title">Products</h2>
+        <div id="products-grid" class="products-grid">
+            <!-- Products will be loaded here -->
+        </div>
+    </main>
+
+    <script src="js/navbar.js"></script>
+    <script src="js/footer.js"></script>
+    <script src="js/toast.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/wishlist.js"></script>
+    <script src="js/orders.js"></script>
+    <script src="js/recentlyViewed.js"></script>
+    <script src="js/ratings.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/category.js"></script>
+</body>
+</html>

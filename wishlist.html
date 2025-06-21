@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Wishlist - Product Store</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dark-mode.css">
+    <link rel="stylesheet" href="css/navbar-dropdown.css">
+    <link rel="stylesheet" href="css/error-handling.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body data-breadcrumbs='[{"name":"Home","url":"index.html"},{"name":"Wishlist"}]'>
+
+
+    <main class="container">
+        <h2>My Wishlist</h2>
+        <div id="wishlist-items" class="products-grid">
+            <!-- Wishlist items will be loaded here -->
+        </div>
+    </main>
+
+    <script src="js/navbar.js"></script>
+    <script src="js/footer.js"></script>
+    <script src="js/toast.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/wishlist.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/dropdown.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!getCurrentUser()) {
+                showToast('Please login to view wishlist', 'error');
+                setTimeout(() => window.location.href = 'login.html', 1000);
+                return;
+            }
+            displayWishlistItems();
+            updateAuthLink();
+            updateCartCount();
+            updateWishlistCount();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+/* Error handling styles */
+.error-container {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: var(--card-bg, #fff);
+    border-radius: 10px;
+    box-shadow: 0 2px 10px var(--shadow-color, rgba(0, 0, 0, 0.1));
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+.error-container p {
+    font-size: 1.2rem;
+    color: var(--text-color, #333);
+    margin-bottom: 20px;
+}
+
+.error-container .btn-primary,
+.error-container .btn-secondary {
+    margin: 0 10px;
+    padding: 10px 20px;
+    display: inline-block;
+}
+
+/* Dark mode support */
+body.dark-mode .error-container {
+    background-color: var(--card-bg, #16213e);
+}
+
+body.dark-mode .error-container p {
+    color: var(--text-color, #e6e6e6);
+}
