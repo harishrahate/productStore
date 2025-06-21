@@ -235,8 +235,8 @@ function loadUserStats() {
     if (!currentUser) return;
     
     // Get orders
-    const orders = JSON.parse(localStorage.getItem('orders') || '[]');
-    const userOrders = orders.filter(order => order.userEmail === currentUser.email);
+    const orders = JSON.parse(localStorage.getItem('orderHistory') || '[]');
+    const userOrders = orders.filter(order => order.userId === currentUser.email);
     
     // Total orders
     document.getElementById('total-orders').textContent = userOrders.length;
@@ -246,7 +246,7 @@ function loadUserStats() {
     document.getElementById('total-spent').textContent = `$${totalSpent.toFixed(2)}`;
     
     // Wishlist items
-    const wishlist = JSON.parse(localStorage.getItem(`wishlist_${currentUser.email}`) || '[]');
+    const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
     document.getElementById('wishlist-items').textContent = wishlist.length;
 }
 

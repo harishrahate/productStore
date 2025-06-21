@@ -249,77 +249,7 @@ function addRatingToProductCard(product) {
         }
         
         // Otherwise use API ratings
-        if (product.rating) {
-            return `
-                <div class="product-rating">
-                    ${renderStars(product.rating.rate)}
-                    <span class="rating-count">(${product.rating.count})</span>
-                </div>
-            `;
-        }
-        
-        // Fallback if no ratings available
-        return `
-            <div class="product-rating">
-                ${renderStars(0)}
-                <span class="rating-count">(0)</span>
-            </div>
-        `;
-    } catch (error) {
-        console.error('Error rendering product rating:', error);
-        return `
-            <div class="product-rating">
-                ${renderStars(0)}
-                <span class="rating-count">(0)</span>
-            </div>
-        `;
-    }
-}tings.count > 0) {
-            return `
-                <div class="product-rating">
-                    ${renderStars(userRatings.average)}
-                    <span class="rating-count">(${userRatings.count})</span>
-                </div>
-            `;
-        }
-        
-        // Otherwise use API ratings
-        if (product.rating) {
-            return `
-                <div class="product-rating">
-                    ${renderStars(product.rating.rate)}
-                    <span class="rating-count">(${product.rating.count})</span>
-                </div>
-            `;
-        }
-        
-        // Fallback if no ratings available
-        return `
-            <div class="product-rating">
-                ${renderStars(0)}
-                <span class="rating-count">(0)</span>
-            </div>
-        `;
-    } catch (error) {
-        console.error('Error rendering product rating:', error);
-        return `
-            <div class="product-rating">
-                ${renderStars(0)}
-                <span class="rating-count">(0)</span>
-            </div>
-        `;
-    }
-}tings.count > 0) {
-            return `
-                <div class="product-rating">
-                    ${renderStars(userRatings.average)}
-                    <span class="rating-count">(${userRatings.count})</span>
-                </div>
-            `;
-        }
-        
-        // Otherwise use API ratings
-        if (product.rating) {
+        if (product && product.rating) {
             return `
                 <div class="product-rating">
                     ${renderStars(product.rating.rate)}

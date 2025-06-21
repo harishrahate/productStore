@@ -40,10 +40,14 @@ function getWishlistItems() {
 
 function updateWishlistCount() {
     const wishlistCount = document.getElementById('wishlist-count');
-    if (wishlistCount && getCurrentUser()) {
-        wishlistCount.textContent = getWishlistItems().length;
-    } else if (wishlistCount) {
-        wishlistCount.style.display = 'none';
+    if (!wishlistCount) return;
+    
+    if (getCurrentUser()) {
+        const count = getWishlistItems().length;
+        wishlistCount.textContent = count;
+        wishlistCount.style.display = 'inline';
+    } else {
+        wishlistCount.textContent = '0';
     }
 }
 

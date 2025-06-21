@@ -58,10 +58,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const breadcrumbs = breadcrumbData ? JSON.parse(breadcrumbData) : [{ name: 'Home', url: 'index.html' }];
     loadNavbar(breadcrumbs);
     
-    // Update auth link after navbar is loaded
+    // Update auth link and counts after navbar is loaded
     setTimeout(() => {
         if (typeof updateAuthLink === 'function') {
             updateAuthLink();
+        }
+        
+        // Ensure counts are updated on every page
+        if (typeof updateWishlistCount === 'function') {
+            updateWishlistCount();
+        }
+        if (typeof updateCartCount === 'function') {
+            updateCartCount();
+        }
+        if (typeof updateOrderCount === 'function') {
+            updateOrderCount();
         }
     }, 100);
 });

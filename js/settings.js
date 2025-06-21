@@ -3,6 +3,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Update auth link and user profile
     updateAuthLink();
     
+    // Update counts
+    updateCartCount();
+    updateWishlistCount();
+    updateOrderCount();
+    
     // Initialize settings navigation
     initSettingsNav();
     

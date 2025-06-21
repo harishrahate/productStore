@@ -70,6 +70,12 @@ function updateAuthLink() {
         if (typeof updateOrderCount === 'function') {
             updateOrderCount();
         }
+        if (typeof updateWishlistCount === 'function') {
+            updateWishlistCount();
+        }
+        if (typeof updateCartCount === 'function') {
+            updateCartCount();
+        }
     } else {
         authLink.textContent = 'Login';
         authLink.href = 'login.html';
@@ -86,5 +92,11 @@ function updateAuthLink() {
         // Reset counts
         const orderCount = document.getElementById('order-count');
         if (orderCount) orderCount.textContent = '0';
+        
+        const wishlistCount = document.getElementById('wishlist-count');
+        if (wishlistCount) wishlistCount.textContent = '0';
+        
+        const cartCount = document.getElementById('cart-count');
+        if (cartCount) cartCount.textContent = '0';
     }
 }
